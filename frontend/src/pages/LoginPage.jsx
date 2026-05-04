@@ -20,7 +20,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="td-card p-10 text-center">
           <h1 className="brand-text text-4xl mb-6">
-            TOBY<span className="drop">DROP</span>
+            CS2<span className="drop">DROP</span>
           </h1>
           <p className="text-gray-400 mb-8 text-sm">Login via Steam to sync your skins with CS2.</p>
           <button onClick={handleLogin} className="cyan-btn w-full flex items-center justify-center gap-2 text-sm uppercase">

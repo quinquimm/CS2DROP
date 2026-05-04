@@ -54,7 +54,7 @@ export default function Layout() {
       <aside className="w-[220px] shrink-0 bg-[#0d1219] border-r border-[#1c2430] flex flex-col h-screen sticky top-0">
         <div className="p-5 border-b border-[#1c2430]">
           <div className="brand-text text-2xl">
-            TOBY<span className="drop">DROP</span>
+            CS2<span className="drop">DROP</span>
           </div>
           <div className="text-[10px] text-gray-500 mt-1 tracking-widest">CS2 SKIN GAMBLING</div>
         </div>

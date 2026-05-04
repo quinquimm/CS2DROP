@@ -7,27 +7,27 @@ export const useApp = () => useContext(AppContext);
 
 export const AppProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const stored = localStorage.getItem('tobydrop_user');
+    const stored = localStorage.getItem('cs2drop_user');
     return stored ? JSON.parse(stored) : null;
   });
   const [inventory, setInventory] = useState(() => {
-    const stored = localStorage.getItem('tobydrop_inventory');
+    const stored = localStorage.getItem('cs2drop_inventory');
     return stored ? JSON.parse(stored) : INITIAL_INVENTORY;
   });
   const [balance, setBalance] = useState(() => {
-    const stored = localStorage.getItem('tobydrop_balance');
+    const stored = localStorage.getItem('cs2drop_balance');
     return stored ? parseFloat(stored) : DEFAULT_USER.balance;
   });
 
   useEffect(() => {
-    if (user) localStorage.setItem('tobydrop_user', JSON.stringify(user));
-    else localStorage.removeItem('tobydrop_user');
+    if (user) localStorage.setItem('cs2drop_user', JSON.stringify(user));
+    else localStorage.removeItem('cs2drop_user');
   }, [user]);
   useEffect(() => {
-    localStorage.setItem('tobydrop_inventory', JSON.stringify(inventory));
+    localStorage.setItem('cs2drop_inventory', JSON.stringify(inventory));
   }, [inventory]);
   useEffect(() => {
-    localStorage.setItem('tobydrop_balance', balance.toString());
+    localStorage.setItem('cs2drop_balance', balance.toString());
   }, [balance]);
 
   const login = () => setUser(DEFAULT_USER);
