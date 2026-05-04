@@ -19,7 +19,7 @@ const LiveDrops = () => {
     const c = CASES[i % CASES.length];
     const rarities = Object.keys(RARITY_COLORS);
     const r = rarities[i % rarities.length];
-    return { id: i, user: ['Toby', 'xXDragon', 'Skin Master', 'Lucky', 'PashaBiceps'][i % 5], case: c, rarity: r };
+    return { id: i, user: ['Toby', 'xXDragon', 'SkinMaster', 'Lucky', 'Player'][i % 5], case: c, rarity: r };
   });
   return (
     <div className="border-b border-[#1c2430] bg-[#0d1219] overflow-hidden py-2">
@@ -48,9 +48,14 @@ export default function Layout() {
     navigate('/login');
   };
 
+  const handleDeposit = () => {
+    const amt = prompt('Valor a depositar (€) — modo demo:');
+    const v = parseFloat(amt);
+    if (!isNaN(v) && v > 0) deposit(v);
+  };
+
   return (
     <div className="App min-h-screen flex">
-      {/* Sidebar */}
       <aside className="w-[220px] shrink-0 bg-[#0d1219] border-r border-[#1c2430] flex flex-col h-screen sticky top-0">
         <div className="p-5 border-b border-[#1c2430]">
           <div className="brand-text text-2xl">
@@ -94,22 +99,24 @@ export default function Layout() {
         </div>
       </aside>
 
-      {/* Main */}
       <main className="flex-1 flex flex-col min-w-0">
-        {/* Header */}
         <header className="h-16 bg-[#0d1219] border-b border-[#1c2430] flex items-center justify-between px-6 sticky top-0 z-30">
           <div className="text-sm text-gray-400">
-            Bem-vindo, <span className="text-white font-semibold">{user?.name}</span>
+            Bem-vindo, <span className="text-white font-semibold">{user?.username}</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 bg-[#12171f] border border-[#1c2430] rounded-lg px-4 py-2">
               <Wallet size={16} className="text-[#1ad8ff]" />
-              <span className="font-bold text-white">${balance.toFixed(2)}</span>
-              <button className="ml-2 w-6 h-6 rounded-md bg-[#1ad8ff] text-[#0a0d12] flex items-center justify-center hover:bg-[#4fe3ff] transition-colors" onClick={() => { const amt = prompt('Deposit amount (mock):'); if (amt) deposit(parseFloat(amt)); }}>
+              <span className="font-bold text-white">€{(balance ?? 0).toFixed(2)}</span>
+              <button className="ml-2 w-6 h-6 rounded-md bg-[#1ad8ff] text-[#0a0d12] flex items-center justify-center hover:bg-[#4fe3ff] transition-colors" onClick={handleDeposit}>
                 <Plus size={14} strokeWidth={3} />
               </button>
             </div>
-            <img src={user?.avatar} alt="avatar" className="w-10 h-10 rounded-full border-2 border-[#1ad8ff]" />
+            {user?.avatar ? (
+              <img src={user.avatar} alt="avatar" className="w-10 h-10 rounded-full border-2 border-[#1ad8ff]" />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-[#12171f] border-2 border-[#1ad8ff]" />
+            )}
           </div>
         </header>
 

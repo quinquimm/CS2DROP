@@ -128,32 +128,8 @@ export function getCaseItems(caseId) {
   return CASE_ITEMS_CACHE[caseId];
 }
 
-export const DEFAULT_USER = {
-  id: 'guest',
-  name: 'PashaBiceps_Fan',
-  avatar: 'https://images.unsplash.com/photo-1772371272167-0117a6573d58?w=100&h=100&fit=crop',
-  balance: 1250.0,
-  level: 24,
-  rank: 'Community Member',
-};
-
-export const LEADERBOARD = [
-  { rank: 1, name: 'xXDragonXx', avatar: 'https://images.unsplash.com/photo-1772371272208-412168748f2a?w=100&h=100&fit=crop', wagered: 24850.33, reward: 'CHAMPION BOX' },
-  { rank: 2, name: 'SkinMaster', avatar: 'https://images.unsplash.com/photo-1772371272228-f4a8247cfe6d?w=100&h=100&fit=crop', wagered: 18320.75, reward: 'CHALLENGER BOX' },
-  { rank: 3, name: 'LuckyLuke', avatar: 'https://images.unsplash.com/photo-1772371272167-0117a6573d58?w=100&h=100&fit=crop', wagered: 12540.10, reward: 'CONTENDER BOX' },
-  { rank: 4, name: 'PashaBiceps_Fan', avatar: 'https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg', wagered: 9850.42, reward: '-' },
-  { rank: 5, name: 'HeadshotKing', avatar: 'https://images.unsplash.com/photo-1772371272141-0fbd644b65c4?w=100&h=100&fit=crop', wagered: 7420.00, reward: '-' },
-  { rank: 6, name: 'AWPer_One', avatar: 'https://images.unsplash.com/photo-1588590560438-5e27fe3f6b71?w=100&h=100&fit=crop', wagered: 5120.88, reward: '-' },
-  { rank: 7, name: 'NoobSlayer', avatar: 'https://images.unsplash.com/photo-1690671832354-9fe1f3ae559d?w=100&h=100&fit=crop', wagered: 3980.14, reward: '-' },
-  { rank: 8, name: 'SilverScrub', avatar: 'https://images.unsplash.com/photo-1772371272208-412168748f2a?w=100&h=100&fit=crop', wagered: 2150.00, reward: '-' },
-];
-
-export const BATTLES_OPEN = [
-  { id: 'b1', creator: { name: 'xXDragonXx', avatar: 'https://images.unsplash.com/photo-1772371272208-412168748f2a?w=100&h=100&fit=crop' }, cases: ['dragon_roll', 'fang', 'halloqueen'], mode: '1v1', value: 284.71 },
-  { id: 'b2', creator: { name: 'LuckyLuke', avatar: 'https://images.unsplash.com/photo-1772371272167-0117a6573d58?w=100&h=100&fit=crop' }, cases: ['sortudo', 'sortudo', 'patrao'], mode: '2v2', value: 113.5 },
-  { id: 'b3', creator: { name: 'SkinMaster', avatar: 'https://images.unsplash.com/photo-1772371272228-f4a8247cfe6d?w=100&h=100&fit=crop' }, cases: ['utopia', 'utopia'], mode: '1v1', value: 500 },
-  { id: 'b4', creator: { name: 'HeadshotKing', avatar: 'https://images.unsplash.com/photo-1772371272141-0fbd644b65c4?w=100&h=100&fit=crop' }, cases: ['iconico', 'siiiuu', 'patrao'], mode: '1v1v1', value: 20.8 },
-];
+// Removed: DEFAULT_USER, INITIAL_INVENTORY, LEADERBOARD, BATTLES_OPEN
+// User and inventory now come from backend API; leaderboard from /api/leaderboard; battles from /api/battles
 
 export const CHANGELOG = [
   {
@@ -192,11 +168,4 @@ export const CHANGELOG = [
   },
 ];
 
-export const INITIAL_INVENTORY = [
-  { id: 'inv_1', name: 'AK-47 | Redline', wear: 'FT', rarity: 'classified', price: 38.50, image: SKIN_IMG.ak_redline, locked: false },
-  { id: 'inv_2', name: 'AWP | Asiimov', wear: 'FN', rarity: 'covert', price: 125.00, image: SKIN_IMGS_POOL[4], locked: true },
-  { id: 'inv_3', name: 'M4A4 | Howl', wear: 'MW', rarity: 'covert', price: 2500.00, image: SKIN_IMG.m4_howl, locked: false },
-  { id: 'inv_4', name: 'Glock-18 | Fade', wear: 'FN', rarity: 'classified', price: 420.00, image: SKIN_IMGS_POOL[5], locked: false },
-  { id: 'inv_5', name: 'USP-S | Kill Confirmed', wear: 'FT', rarity: 'classified', price: 88.00, image: SKIN_IMGS_POOL[0], locked: false },
-  { id: 'inv_6', name: 'AK-47 | Elite Build', wear: 'MW', rarity: 'milspec', price: 12.50, image: SKIN_IMGS_POOL[1], locked: false },
-];
+// All inventory now comes from backend API.

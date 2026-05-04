@@ -85,7 +85,7 @@ export default function UpgraderPage() {
         <div className="td-card p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-bold tracking-wide text-sm">YOUR SELECTION</h3>
-            <span className="text-[#1ad8ff] font-bold text-sm">${selectedValue.toFixed(2)}</span>
+            <span className="text-[#1ad8ff] font-bold text-sm">€{selectedValue.toFixed(2)}</span>
           </div>
           <div className="grid grid-cols-3 gap-2 min-h-[220px]">
             {selectedSkins.length === 0 && <div className="col-span-3 text-center text-gray-600 text-xs py-10">Clica nas skins do inventario para selecionar (máx 10)</div>}
@@ -93,7 +93,7 @@ export default function UpgraderPage() {
               <div key={s.id} onClick={() => toggleSelect(s)} className={`td-card rarity-${s.rarity} p-2 cursor-pointer text-center`}>
                 <img src={s.image} className="h-14 object-contain mx-auto" alt="" />
                 <div className="text-[10px] truncate font-semibold">{s.name}</div>
-                <div className="text-[10px] text-[#1ad8ff]">${s.price.toFixed(2)}</div>
+                <div className="text-[10px] text-[#1ad8ff]">€{s.price.toFixed(2)}</div>
               </div>
             ))}
           </div>
@@ -136,7 +136,7 @@ export default function UpgraderPage() {
         <div className="td-card p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-bold tracking-wide text-sm">TARGET SKIN</h3>
-            {targetSkin && <span className="text-[#1ad8ff] font-bold text-sm">${targetSkin.price.toFixed(2)}</span>}
+            {targetSkin && <span className="text-[#1ad8ff] font-bold text-sm">€{targetSkin.price.toFixed(2)}</span>}
           </div>
           <div className="relative mb-2">
             <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
@@ -147,7 +147,7 @@ export default function UpgraderPage() {
               <div key={t.id} onClick={() => setTargetSkin(t)} className={`td-card rarity-${t.rarity} p-2 cursor-pointer text-center ${targetSkin?.id === t.id ? 'ring-2 ring-[#1ad8ff]' : ''}`}>
                 <img src={t.image} className="h-12 object-contain mx-auto" alt="" />
                 <div className="text-[10px] truncate font-semibold">{t.name}</div>
-                <div className="text-[10px] text-[#1ad8ff]">${t.price.toFixed(2)}</div>
+                <div className="text-[10px] text-[#1ad8ff]">€{t.price.toFixed(2)}</div>
               </div>
             ))}
           </div>
@@ -164,7 +164,7 @@ export default function UpgraderPage() {
               <div key={s.id} onClick={() => toggleSelect(s)} className={`td-card rarity-${s.rarity} p-2 cursor-pointer text-center ${isSelected ? 'ring-2 ring-[#1ad8ff]' : ''}`}>
                 <img src={s.image} className="h-14 object-contain mx-auto" alt="" />
                 <div className="text-[10px] truncate font-semibold">{s.name}</div>
-                <div className="text-[10px] text-[#1ad8ff]">${s.price.toFixed(2)}</div>
+                <div className="text-[10px] text-[#1ad8ff]">€{s.price.toFixed(2)}</div>
               </div>
             );
           })}

@@ -54,7 +54,7 @@ export default function CasesPage() {
               <img src={c.image} alt={c.name} className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300" onError={(e) => { e.target.style.visibility = 'hidden'; }} />
             </div>
             <div className="font-bold text-sm mb-2 truncate w-full">{c.name}</div>
-            <div className="text-[#1ad8ff] font-extrabold text-lg">${c.price.toFixed(2)}</div>
+            <div className="text-[#1ad8ff] font-extrabold text-lg">€{c.price.toFixed(2)}</div>
           </button>
         ))}
       </div>

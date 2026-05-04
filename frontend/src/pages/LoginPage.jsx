@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 
 const SteamIcon = () => (
@@ -9,25 +9,20 @@ const SteamIcon = () => (
 );
 
 export default function LoginPage() {
-  const { login } = useApp();
-  const navigate = useNavigate();
-  const handleLogin = () => {
-    login();
-    navigate('/cases');
-  };
+  const { loginViaSteam } = useApp();
+  const [params] = useSearchParams();
+  const error = params.get('error');
   return (
     <div className="App min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="td-card p-10 text-center">
-          <h1 className="brand-text text-4xl mb-6">
-            CS2<span className="drop">DROP</span>
-          </h1>
-          <p className="text-gray-400 mb-8 text-sm">Login via Steam to sync your skins with CS2.</p>
-          <button onClick={handleLogin} className="cyan-btn w-full flex items-center justify-center gap-2 text-sm uppercase">
-            <SteamIcon />
-            Login with Steam
+          <h1 className="brand-text text-4xl mb-6">CS2<span className="drop">DROP</span></h1>
+          <p className="text-gray-400 mb-8 text-sm">Login via Steam para sincronizar as tuas skins com o servidor CS2.</p>
+          {error && <div className="mb-4 text-xs text-[#eb4b4b]">Falha no login Steam ({error}). Tenta novamente.</div>}
+          <button onClick={loginViaSteam} className="cyan-btn w-full flex items-center justify-center gap-2 text-sm uppercase">
+            <SteamIcon /> Login with Steam
           </button>
-          <p className="text-gray-600 text-xs mt-6">Login é mockado para demonstração</p>
+          <p className="text-gray-600 text-xs mt-6">Cada novo jogador começa com 100€ de saldo</p>
         </div>
       </div>
     </div>

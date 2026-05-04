@@ -26,7 +26,7 @@ export default function InventoryPage() {
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <div>
           <h1 className="text-3xl font-extrabold tracking-wide">MY INVENTORY</h1>
-          <p className="text-gray-500 text-sm mt-1">{inventory.length} items • valor total <span className="text-[#1ad8ff] font-bold">${totalValue.toFixed(2)}</span></p>
+          <p className="text-gray-500 text-sm mt-1">{inventory.length} items • valor total <span className="text-[#1ad8ff] font-bold">€{totalValue.toFixed(2)}</span></p>
         </div>
         <div className="flex gap-2 flex-wrap">
           <select className="td-select" value={rarityFilter} onChange={(e) => setRarityFilter(e.target.value)}>
@@ -55,9 +55,9 @@ export default function InventoryPage() {
               <div className="text-xs font-semibold truncate">{s.name}</div>
               <div className="flex items-center justify-between mt-1">
                 <span className="rarity-tag" style={{ background: RARITY_COLORS[s.rarity], color: '#fff' }}>{s.wear}</span>
-                <span className="text-xs text-[#1ad8ff] font-bold">${s.price.toFixed(2)}</span>
+                <span className="text-xs text-[#1ad8ff] font-bold">€{s.price.toFixed(2)}</span>
               </div>
-              <button onClick={(e) => { e.stopPropagation(); sellSkin(s.id); toast.success(`Vendido por $${s.price.toFixed(2)}`); }} className="mt-2 w-full text-[10px] py-1 rounded bg-[#0f141b] hover:bg-[#1ad8ff] hover:text-[#0a0d12] font-bold transition-colors">SELL</button>
+              <button onClick={(e) => { e.stopPropagation(); sellSkin(s.id); toast.success(`Vendido por €${s.price.toFixed(2)}`); }} className="mt-2 w-full text-[10px] py-1 rounded bg-[#0f141b] hover:bg-[#1ad8ff] hover:text-[#0a0d12] font-bold transition-colors">SELL</button>
             </div>
           ))}
         </div>
@@ -101,7 +101,7 @@ export default function InventoryPage() {
                 <div className="font-mono">{Math.floor(Math.random() * 1000)}</div>
               </div>
             </div>
-            <div className="text-3xl font-extrabold text-center text-[#1ad8ff] mt-4">${preview.price.toFixed(2)}</div>
+            <div className="text-3xl font-extrabold text-center text-[#1ad8ff] mt-4">€{preview.price.toFixed(2)}</div>
           </div>
         </div>
       )}

@@ -40,9 +40,10 @@ export default function CaseOpeningPage() {
 
   if (!caseData) return <div className="p-10">Case not found</div>;
 
-  const openCase = () => {
+  const openCase = async () => {
     if (spinning) return;
-    if (!spend(caseData.price)) {
+    const ok = await spend(caseData.price);
+    if (!ok) {
       toast.error('Saldo insuficiente');
       return;
     }
@@ -65,7 +66,7 @@ export default function CaseOpeningPage() {
       setSpinning(false);
       setWon(winner);
       addSkin(winner);
-      toast.success(`Ganhaste ${winner.name}!`, { description: `$${winner.price.toFixed(2)}` });
+      toast.success(`Ganhaste ${winner.name}!`, { description: `€${winner.price.toFixed(2)}` });
     }, 6200);
   };
 
@@ -80,10 +81,10 @@ export default function CaseOpeningPage() {
         <div className="flex-1 text-center md:text-left">
           <div className="text-xs text-gray-500 tracking-widest mb-1">{caseData.series} CASE</div>
           <h1 className="text-3xl font-extrabold">{caseData.name}</h1>
-          <div className="text-[#1ad8ff] text-2xl font-extrabold mt-2">${caseData.price.toFixed(2)}</div>
+          <div className="text-[#1ad8ff] text-2xl font-extrabold mt-2">€{caseData.price.toFixed(2)}</div>
         </div>
         <button onClick={openCase} disabled={spinning || balance < caseData.price} className="cyan-btn text-base px-8 py-4">
-          {spinning ? 'OPENING...' : `OPEN CASE • $${caseData.price.toFixed(2)}`}
+          {spinning ? 'OPENING...' : `OPEN CASE • €${caseData.price.toFixed(2)}`}
         </button>
       </div>
 
@@ -107,7 +108,7 @@ export default function CaseOpeningPage() {
               <img src={it.image} alt={it.name} className="h-24 object-contain mb-2" />
               <div className="text-xs font-semibold text-center truncate w-full">{it.name}</div>
               <div className="text-[10px] text-gray-500">{it.wear}</div>
-              <div className="text-xs text-[#1ad8ff] font-bold">${it.price.toFixed(2)}</div>
+              <div className="text-xs text-[#1ad8ff] font-bold">€{it.price.toFixed(2)}</div>
             </div>
           ))}
         </div>
@@ -119,7 +120,7 @@ export default function CaseOpeningPage() {
           <img src={won.image} alt="" className="h-32 mx-auto my-3" />
           <div className="text-2xl font-extrabold">{won.name}</div>
           <div className="text-sm text-gray-400">{won.wear}</div>
-          <div className="text-[#1ad8ff] text-xl font-extrabold mt-2">${won.price.toFixed(2)}</div>
+          <div className="text-[#1ad8ff] text-xl font-extrabold mt-2">€{won.price.toFixed(2)}</div>
           <button onClick={() => setWon(null)} className="cyan-btn mt-4 px-8">CONTINUE</button>
         </div>
       )}
@@ -133,7 +134,7 @@ export default function CaseOpeningPage() {
               <div className="text-xs font-semibold truncate">{it.name}</div>
               <div className="flex items-center justify-between mt-1">
                 <span className="text-[10px] text-gray-500">{it.wear}</span>
-                <span className="text-xs text-[#1ad8ff] font-bold">${it.price.toFixed(2)}</span>
+                <span className="text-xs text-[#1ad8ff] font-bold">€{it.price.toFixed(2)}</span>
               </div>
             </div>
           ))}

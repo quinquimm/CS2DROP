@@ -16,9 +16,10 @@ export default function CrashPage() {
   const hasBet = useRef(false);
   const startRef = useRef(0);
 
-  const startGame = () => {
+  const startGame = async () => {
     if (phase !== 'idle') return;
-    if (!spend(betAmount)) {
+    const ok = await spend(betAmount);
+    if (!ok) {
       toast.error('Saldo insuficiente');
       return;
     }
@@ -54,7 +55,7 @@ export default function CrashPage() {
     deposit(winAmount);
     setCashedOut({ m, amount: winAmount });
     hasBet.current = false;
-    toast.success(`Cashed out @ ${m}x • +$${winAmount.toFixed(2)}`);
+    toast.success(`Cashed out @ ${m}x • +€${winAmount.toFixed(2)}`);
   };
 
   useEffect(() => () => clearInterval(intervalRef.current), []);
@@ -103,10 +104,10 @@ export default function CrashPage() {
             <button onClick={() => cashOut()} className="cyan-btn w-full">CASH OUT @ {multiplier.toFixed(2)}x</button>
           ) : (
             <button onClick={startGame} disabled={phase !== 'idle'} className="cyan-btn w-full">
-              {phase === 'idle' ? `PLACE BET $${betAmount.toFixed(2)}` : phase === 'crashed' ? 'CRASHED' : 'IN PROGRESS'}
+              {phase === 'idle' ? `PLACE BET €${betAmount.toFixed(2)}` : phase === 'crashed' ? 'CRASHED' : 'IN PROGRESS'}
             </button>
           )}
-          <div className="mt-4 text-xs text-gray-500 text-center">Balance: <span className="text-white font-bold">${balance.toFixed(2)}</span></div>
+          <div className="mt-4 text-xs text-gray-500 text-center">Balance: <span className="text-white font-bold">€{balance.toFixed(2)}</span></div>
         </div>
       </div>
     </div>

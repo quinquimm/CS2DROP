@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import ChangelogModal from '../components/ChangelogModal';
-import { Volume2, Bell, Globe, LogOut, FileText, ExternalLink } from 'lucide-react';
+import { Volume2, Bell, Globe, LogOut, FileText } from 'lucide-react';
 
 export default function SettingsPage() {
   const { user, logout } = useApp();
@@ -20,15 +20,19 @@ export default function SettingsPage() {
       <div className="td-card p-6 mb-4">
         <h2 className="font-bold tracking-wide text-sm text-gray-400 mb-4">STEAM ACCOUNT</h2>
         <div className="flex items-center gap-4">
-          <img src={user.avatar} alt="" className="w-16 h-16 rounded-full border-2 border-[#1ad8ff]" />
+          {user.avatar ? (
+            <img src={user.avatar} alt="" className="w-16 h-16 rounded-full border-2 border-[#1ad8ff]" />
+          ) : (
+            <div className="w-16 h-16 rounded-full border-2 border-[#1ad8ff] bg-[#12171f]" />
+          )}
           <div className="flex-1">
-            <div className="font-bold text-lg">{user.name}</div>
-            <div className="text-xs text-gray-500">Your profile information is synced with Steam.</div>
+            <div className="font-bold text-lg">{user.username}</div>
+            <div className="text-xs text-gray-500">Steam ID: {user.steam_id}</div>
+            <a href={user.profile_url} target="_blank" rel="noopener noreferrer" className="text-xs text-[#1ad8ff] hover:underline">Ver perfil Steam ↗</a>
           </div>
         </div>
         <div className="flex gap-2 mt-4">
           <button onClick={() => { logout(); navigate('/login'); }} className="px-4 py-2 rounded bg-[#eb4b4b] text-white font-bold flex items-center gap-2 text-sm"><LogOut size={14} /> LOGOUT FROM STEAM</button>
-          <button onClick={() => window.open('https://tobydrop2.onrender.com', '_blank')} className="px-4 py-2 rounded bg-[#12171f] text-gray-300 font-bold flex items-center gap-2 text-sm hover:text-white"><ExternalLink size={14} /> VIEW WEBSITE</button>
           <button onClick={() => setShowChangelog(true)} className="px-4 py-2 rounded bg-[#12171f] text-gray-300 font-bold flex items-center gap-2 text-sm hover:text-white"><FileText size={14} /> CHANGELOG</button>
         </div>
       </div>
