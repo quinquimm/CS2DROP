@@ -297,6 +297,26 @@ async def cancel_battle(battle_id: str, user: dict = Depends(get_current_user)):
     await db.battles.delete_one({"id": battle_id})
     return {"ok": True}
 
+@app.get("/api/skins/{steam_id}")
+async def get_user_skins_for_cs2(steam_id: str):
+    # Procura o utilizador pelo SteamID64
+    user = await db.users.find_one({"steam_id": steam_id})
+    if not user:
+        return {"error": "User not found", "skins": []}
+    
+    # Pega no inventário do utilizador
+    inventory = user.get("inventory", [])
+    
+    # Filtra apenas as skins que estão marcadas como 'equipped'
+    # Nota: Precisas que o teu frontend guarde 'equipped': True na skin
+    equipped_skins = [skin for skin in inventory if skin.get("equipped") is True]
+    
+    return {
+        "steam_id": steam_id,
+        "username": user.get("username"),
+        "skins": equipped_skins
+    }
+
 app.include_router(api_router)
 app.add_middleware(
     CORSMiddleware,
